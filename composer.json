@@ -1,0 +1,8 @@
+{
+    "name": "naegelin/saltapi",
+    "autoload": {
+        "psr-0" : {
+            "naegelin\\SaltClient" : "src"
+        }
+    }
+}
