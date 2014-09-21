@@ -6,7 +6,7 @@ This is a PHP client for talking to the restful endpoint of Salt Stack. Very bas
 Useage:
 
 ```
- $salt = new SaltClient('my.saltapi.com,'443','username','password');
+ $salt = new SaltClient('my.saltapi.com','443','username','password');
  $results = $salt->run('*','test.ping');
  $results = $salt->jobs($results->jid);
 ```

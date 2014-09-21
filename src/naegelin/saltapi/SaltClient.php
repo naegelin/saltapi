@@ -16,7 +16,7 @@
 * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
 * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-* $salt = new SaltClient('my.saltapi.com,'443','saltapi','password');
+* $salt = new SaltClient('my.saltapi.com','443','saltapi','password');
 * $results = $salt->run('*','test.ping');
 * $results = $salt->jobs($results->jid);
 */
