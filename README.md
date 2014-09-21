@@ -10,3 +10,13 @@ Useage:
  $results = $salt->run('*','test.ping');
  $results = $salt->jobs($results->jid);
 ```
+
+Easily add to your projects with composer:
+
+```
+	"require": {
+
+		"naegelin/saltapi": "dev-master"
+	},
+
+```
