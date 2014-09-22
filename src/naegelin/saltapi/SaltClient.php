@@ -55,105 +55,103 @@ private function Authenticate($username, $password, $authtype)
 	$fields = array('username' => urlencode($username), 'password' => urlencode($password),'eauth' => urlencode($authtype));
 
 //url-ify the data for the POST
+
 	foreach($fields as $key=>$value)
 	{
-		foreach($fields as $key=>$value)
-		{
-			$fields_string .= $key.'='.$value.'&';
-		}
+		$fields_string .= $key.'='.$value.'&';
+	}
 
-		rtrim($fields_string, '&');
+	rtrim($fields_string, '&');
 
 
 //open connection
-		$ch = curl_init();
+	$ch = curl_init();
 
 //set the CURL optioins
-		curl_setopt($ch,CURLOPT_URL, $url);
-		curl_setopt($ch,CURLOPT_POST, count($fields));
-		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-		curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
+	curl_setopt($ch,CURLOPT_URL, $url);
+	curl_setopt($ch,CURLOPT_POST, count($fields));
+	curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+	curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
 //security vulnerability:
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 //we want to receive the body response
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 //This one is important because we want a nice JSON response
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'Accept: application/json',
-			'Content-Length: ' . strlen($fields_string))
-		);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		'Accept: application/json',
+		'Content-Length: ' . strlen($fields_string))
+	);
 
 //execute post
-		$result = curl_exec($ch);
+	$result = curl_exec($ch);
 
 //close connection
-		curl_close($ch);
+	curl_close($ch);
 
 
-		$jsonResults = json_decode($result);
+	$jsonResults = json_decode($result);
 
 
 //return $jsonResults->return[0]->token;
-		return $jsonResults->return[0];
-	}
+	return $jsonResults->return[0];
+}
 
-	public function run($targethosts,$command,$argument="")
-	{
-		$url = $this->baseurl;
+public function run($targethosts,$command,$argument="")
+{
+	$url = $this->baseurl;
 
-		{
-			$url = $this->baseurl;
 
-			$dataobj = new stdClass();
-			$dataobj->client = $this->async;
-			$dataobj->tgt = $targethosts;
-			$dataobj->fun = $command;
+
+	$dataobj = new stdClass();
+	$dataobj->client = $this->async;
+	$dataobj->tgt = $targethosts;
+	$dataobj->fun = $command;
 
 //Passing an empty arg gets mis-interpreted as an argument so don't send it at all if we dont have any.
-			if ($argument !="")
-			{
-				$dataobj->arg = $argument;
-			}
+	if ($argument !="")
+	{
+		$dataobj->arg = $argument;
+	}
 
 
-			$fields_string = '[' .  json_encode($dataobj) . ']';
+	$fields_string = '[' .  json_encode($dataobj) . ']';
 
 
 //open connection
-			$ch = curl_init();
+	$ch = curl_init();
 
 //set the CURL options
-			curl_setopt($ch,CURLOPT_URL, $url);
-			curl_setopt($ch,CURLOPT_POST, true);
-			curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
-			curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
+	curl_setopt($ch,CURLOPT_URL, $url);
+	curl_setopt($ch,CURLOPT_POST, true);
+	curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+	curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
 //security vulnerability - use this only if you are testing against a self-signed cert:
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 //we want to receive the body response
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 //This one is important because we want a nice JSON response
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'Accept: application/json',
-				'X-Auth-Token: ' . $this->token,
-				'Content-Type: application/json')
-			);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		'Accept: application/json',
+		'X-Auth-Token: ' . $this->token,
+		'Content-Type: application/json')
+	);
 
 //execute post
-			$result = curl_exec($ch);
+	$result = curl_exec($ch);
 
 //close connection
-			curl_close($ch);
+	curl_close($ch);
 
 
-			$jsonResults = json_decode($result);
+	$jsonResults = json_decode($result);
 
 
-			$jsonResults = json_decode($result);
+	$jsonResults = json_decode($result);
 
 
-			return $jsonResults->return[0];
+	return $jsonResults->return[0];
 
 }//end run
 
@@ -192,11 +190,8 @@ public function jobs($jobid)
 	$jsonResults = json_decode($result);
 
 
+
 	return $jsonResults;
-
-}
-
-return $jsonResults;
 
 }
 
