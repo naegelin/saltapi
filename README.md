@@ -3,7 +3,7 @@ saltapi
 
 This is a PHP client for talking to the restful endpoint of Salt Stack. Very basic functionality for illustrative purposes. 
 
-Useage:
+Usage:
 
 ```
  $salt = new SaltClient('my.saltapi.com','443','username','password');
