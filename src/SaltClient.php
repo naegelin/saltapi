@@ -83,11 +83,11 @@ class SaltClient
     
         $this->baseurl = 'https://' . $hostname . ':' . $port . '/';
         $this->async = ($async == true ? 'local_async' : 'local');
+        $this->debug = $debug;
+        $this->sslCheck = $sslCheck;
         $credentials = $this->authenticate($username, $password, $authtype);
         $this->token = $credentials->token;
         $this->expire = $credentials->expire;
-        $this->debug = $debug;
-        $this->sslCheck = $sslCheck;
     }
 
 
@@ -164,7 +164,7 @@ class SaltClient
         $url = $this->baseurl;
 
 
-        $dataobj = new stdClass();
+        $dataobj = new \stdClass();
         $dataobj->client = $this->async;
         $dataobj->tgt = $targethosts;
         $dataobj->fun = $command;
