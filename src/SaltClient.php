@@ -127,8 +127,14 @@ class SaltClient
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
         //security vulnerability:
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->sslCheck);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->sslCheck);
+        if($this->sslCheck) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        } else {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
         //we want to receive the body response
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -181,8 +187,13 @@ class SaltClient
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
         curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
         //security vulnerability - use this only if you are testing against a self-signed cert:
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->sslCheck);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->sslCheck);
+        if($this->sslCheck) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        } else {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
         //we want to receive the body response
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
@@ -222,8 +233,13 @@ class SaltClient
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_VERBOSE, $this->debug);
         //security vulnerability - use this only if you are testing against a self-signed cert:
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->sslCheck);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->sslCheck);
+        if($this->sslCheck) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        } else {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
         //we want to receive the body response
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
