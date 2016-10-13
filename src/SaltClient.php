@@ -92,7 +92,8 @@ private function Authenticate($username, $password, $authtype)
 
 
 	$jsonResults = json_decode($result);
-
+        if(empty($jsonResults))
+          throw new \Exception('Bad response from the server!');
 
 //return $jsonResults->return[0]->token;
 	return $jsonResults->return[0];
