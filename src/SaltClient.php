@@ -3,6 +3,7 @@
 * This is a PHP client for talking to the restful endpoint of Salt Stack
 *
 * (c) 2014 Chris Naegelin <n---lin@gmail.com>
+* (c) 2016 Gregory Boddin <gregory@siwhine.net>
 *
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
@@ -20,7 +21,7 @@
 * $results = $salt->run('*','test.ping');
 * $results = $salt->jobs($results->jid);
 */
-namespace naegelin\saltapi;
+namespace SaltApi;
 
 class SaltClient {
 
