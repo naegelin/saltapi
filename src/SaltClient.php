@@ -170,7 +170,6 @@ class SaltClient
         $dataobj->fun = $command;
         $dataobj->expr_form = "compound";
 
-
         //Passing an empty arg gets mis-interpreted as an argument so don't send it at all if we dont have any.
         if ($argument != "") {
             $dataobj->arg = $argument;
@@ -212,13 +211,13 @@ class SaltClient
         curl_close($ch);
 
 
-        $jsonResults = json_decode($result);
+        $jsonResults = json_decode($result, true);
         if (empty($jsonResults)) {
             throw new \Exception('Bad response from the server!');
         }
 
 
-        return $jsonResults->return[0];
+        return $jsonResults;
     }
     //end run
 
