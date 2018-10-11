@@ -168,6 +168,8 @@ class SaltClient
         $dataobj->client = $this->async;
         $dataobj->tgt = $targethosts;
         $dataobj->fun = $command;
+        $dataobj->expr_form = "compound";
+
 
         //Passing an empty arg gets mis-interpreted as an argument so don't send it at all if we dont have any.
         if ($argument != "") {
