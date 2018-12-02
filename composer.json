@@ -1,5 +1,5 @@
 {
-    "name": "naegelin/saltapi",
+    "name": "gboddin/saltapi",
     "description": "This is a PHP client for talking to the restful endpoint of Salt Stack",
     "minimum-stability": "stable",
     "license": "MIT",
@@ -7,17 +7,15 @@
         {
             "name": "Chris Naegelin",
             "email": "naegelin@gmail.com"
-        }
-    ],
-    "repositories": [
+        },
         {
-            "url": "https://github.com/naegelin/saltapi",
-            "type": "vcs"
+            "name": "Gregory Boddin",
+            "email": "gregory@siwhine.net"
         }
     ],
     "autoload": {
-        "psr-0" : {
-            "naegelin\\SaltClient" : "src"
+        "psr-4" : {
+            "SaltApi\\" : "src"
         }
     }
 }
